@@ -128,7 +128,6 @@ resource "google_healthcare_fhir_store" "default" {
   enable_update_create          = false
   disable_referential_integrity = false
   disable_resource_versioning   = false
-  enable_history_import         = false
   version                       = "R4"
 }
 
@@ -201,13 +200,6 @@ func testAccCheckGoogleHealthcareFhirStoreUpdate(t *testing.T, pubsubTopic strin
 			if !response.EnableUpdateCreate {
 				return fmt.Errorf("fhirStore 'EnableUpdateCreate' not updated: %s", gcpResourceUri)
 			}
-
-			// because the GET for the FHIR store resource does not return the "enableHistoryImport" flag, this value
-			// will always be false and cannot be relied upon
-
-			//if !response.EnableHistoryImport {
-			//	return fmt.Errorf("fhirStore 'EnableHistoryImport' not updated: %s", gcpResourceUri)
-			//}
 
 			if len(response.Labels) == 0 || response.Labels["label1"] != "labelvalue1" {
 				return fmt.Errorf("fhirStore labels not updated: %s", gcpResourceUri)

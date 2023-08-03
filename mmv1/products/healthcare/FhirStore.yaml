@@ -153,19 +153,6 @@ properties:
       ** Changing this property may recreate the FHIR store (removing all data) **
     required: false
     immutable: true
-  - !ruby/object:Api::Type::Boolean
-    name: 'enableHistoryImport'
-    description: |
-      Whether to allow the bulk import API to accept history bundles and directly insert historical resource
-      versions into the FHIR store. Importing resource histories creates resource interactions that appear to have
-      occurred in the past, which clients may not want to allow. If set to false, history bundles within an import
-      will fail with an error.
-
-      ** Changing this property may recreate the FHIR store (removing all data) **
-
-      ** This property can be changed manually in the Google Cloud Healthcare admin console without recreating the FHIR store **
-    required: false
-    immutable: true
   - !ruby/object:Api::Type::KeyValuePairs
     name: labels
     required: false
